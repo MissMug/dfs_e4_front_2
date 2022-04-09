@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Todo from "./Todo";
 import NewTodoForm from "./TodoForm";
-import { motion } from "framer-motion";
+import { motion, MotionConfig } from "framer-motion";
 
 import { v4 as uuidv4 } from "uuid";
 import "./TodoList.css";
@@ -55,16 +55,30 @@ function TodoList() {
   ));
 
   return (
-    <div className="toShow">
+    <div>
       <div className="TodoList">
-        <h1
-          style={{
-            animation: "3s ease-in 1s infinite reverse both running slidein",
-          }}
-        >
-          Todo List <span>Les taches du jour</span>
+        <h1 className="example-container">
+          <motion.div
+            style={{
+              fontWeight: "bold",
+              width: 300,
+              height: 150,
+              borderRadius: 30,
+              position: "absolute",
+            }}
+            animate={{
+              left: "20%",
+              top: -10,
+              scale: 0.5,
+              rotate: 360,
+              backgroundColor: "#ff9999",
+            }}
+          >
+            To Do List
+          </motion.div>
+          <span>Les tâches du jour</span>
         </h1>
-        <ul className="toShow">{todosList}</ul>
+        <ul>{todosList}</ul>
         <NewTodoForm createTodo={create} />
       </div>
     </div>

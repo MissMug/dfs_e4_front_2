@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 //import uuid from "uuid";
 import { v4 as uuidv4 } from "uuid";
 import "./TodoForm.css";
+import { motion } from "framer-motion";
 
 function NewTodoForm({ task, createTodo }) {
   const [userInput, setUserInput] = useReducer(
@@ -25,7 +26,17 @@ function NewTodoForm({ task, createTodo }) {
 
   return (
     <form className="NewTodoForm" onSubmit={handleSubmit}>
-      <label htmlFor="task">New todo</label>
+      <motion.div
+        animate={{ scale: 1.2 }}
+        transition={{
+          type: "spring",
+          damping: 3,
+          repeat: Infinity,
+          repeatDelay: 2,
+        }}
+      >
+        <label htmlFor="task">Une nouvelle tâche ; c'est par ici!</label>
+      </motion.div>
       <input
         value={userInput.task}
         onChange={handleChange}
@@ -34,7 +45,9 @@ function NewTodoForm({ task, createTodo }) {
         name="task"
         placeholder="New Todo"
       />
-      <button>Add Todo</button>
+      <button>
+        <i class="bi bi-plus-circle-dotted"> Add Todo</i>
+      </button>
     </form>
   );
 }
